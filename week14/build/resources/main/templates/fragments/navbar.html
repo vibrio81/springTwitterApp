@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="/custom.css">
+
+    <title>navbar</title>
+</head>
+<body>
+<nav class="row navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color: #8d13eb">
+                <i class="fas fa-kiwi-bird"></i> Kiwi Nonsense</a>
+        </div>
+        <div id="navbar">
+            <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+                <li><a href="/tweets">Home</a></li>
+                <li><a href="/tweets/new">New Tweet</a></li>
+                <li><a href="/users">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAuthenticated()"><a style="pointer-events: none;color: #8d13eb">
+                    @<span sec:authentication="name"></span></a>
+                <li sec:authorize="isAuthenticated()"><a href="../logout">Logout</a></li>
+                <li sec:authorize="!isAuthenticated()"><a href="../login">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
